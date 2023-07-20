@@ -32,7 +32,7 @@ function Login() {
         console.log(loginData);
 
         //post request to check for user credentials
-        axios.post('http://localhost:5000/login/', loginData)
+        axios.post('https://typle-omega.vercel.app/login/', loginData)
         .then(res => {
             if (res.data.login === 'Login successful') {
                 const userId = res.data.userId;
