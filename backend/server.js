@@ -8,7 +8,13 @@ const app = express();
 const port = process.env.PORT || 5000;
 //port from .env file
 
-app.use(cors());
+app.use(cors(
+    {
+        origin: ["https://deploy-mern-lwhq.vercel.app"],
+        methods: ["POST", "GET", "PUT"],
+        credentials: true
+    }
+));
 app.use(express.json());
 
 const uri = 'mongodb+srv://jgrey2550:4JwftmZVic1IangU@typle.sk5yzxt.mongodb.net/?retryWrites=true&w=majority';
