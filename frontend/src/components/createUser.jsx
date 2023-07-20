@@ -25,7 +25,7 @@ function CreateUser() {
 
         // console.log(user);
         //creates new user with info passed in and posts it to backend
-        axios.post('http://localhost:5000/createUser/add', user)
+        axios.post('https://typle-omega.vercel.app/createUser/add', user)
             .then(res => {
                 const newUserId = res.data.userId;
                 
@@ -37,7 +37,7 @@ function CreateUser() {
                 }
 
                 //makes stats object for each user with userID
-                axios.post('http://localhost:5000/createUser/addStats', userStats)
+                axios.post('https://typle-omega.vercel.app/createUser/addStats', userStats)
                     .then(res => {
                         console.log(res.data)
                     });
@@ -52,7 +52,7 @@ function CreateUser() {
                     skins: [defaultSkin],
                     equiptSkin: "Default"
                 }
-                axios.post('http://localhost:5000/createUser/addProfile', userProfile)
+                axios.post('https://typle-omega.vercel.app/createUser/addProfile', userProfile)
                     .then(res => {
                         console.log(res.data)
                     });
