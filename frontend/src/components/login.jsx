@@ -54,7 +54,7 @@ function Login() {
         <h1>Login below!</h1>
         <form onSubmit={onSubmit}>
                 <div>
-                    <label>Username:</label>
+                    <label>Username: </label>
                     <input 
                         type="text"
                         required
