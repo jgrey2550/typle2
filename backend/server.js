@@ -10,7 +10,7 @@ const port = process.env.PORT || 5000;
 
 app.use(cors(
     {
-        origin: ["https://deploy-mern-lwhq.vercel.app"],
+        origin: ["https://typle2-frontend.vercel.app/"],
         methods: ["POST", "GET", "PUT"],
         credentials: true
     }
