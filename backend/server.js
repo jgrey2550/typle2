@@ -17,6 +17,7 @@ app.use(cors(
 ));
 app.use(express.json());
 
+//testtest
 const uri = 'mongodb+srv://jgrey2550:4JwftmZVic1IangU@typle.sk5yzxt.mongodb.net/?retryWrites=true&w=majority';
 //mongodb uri from .env file
 
