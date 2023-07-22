@@ -21,10 +21,11 @@ app.use(express.json());
 const uri = 'mongodb+srv://jgrey2550:4JwftmZVic1IangU@typle.sk5yzxt.mongodb.net/?retryWrites=true&w=majority';
 //mongodb uri from .env file
 
-mongoose.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true});
-mongoose.connection.once('open', () => {
-    console.log("Connected MONGODB");
-})
+mongoose.connect('mongodb+srv://jgrey2550:test123@cluster0.wn5bc4z.mongodb.net/?retryWrites=true&w=majority');
+// mongoose.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true});
+// mongoose.connection.once('open', () => {
+//     console.log("Connected MONGODB");
+// })
 //connect to mongodb
 
 const createUserRoute = require('./routes/createUser');
