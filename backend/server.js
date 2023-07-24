@@ -28,6 +28,10 @@ mongoose.connect('mongodb+srv://jgrey2550:Rq5GF6hwVRYtuutF@cluster0.qgvh47s.mong
 // })
 //connect to mongodb
 
+app.get("/", (req, res) => {
+    res.json("Hello");
+})
+
 const createUserRoute = require('./routes/createUser');
 const loginRoute = require('./routes/login');
 const globalUser = require('./routes/globalUser');
