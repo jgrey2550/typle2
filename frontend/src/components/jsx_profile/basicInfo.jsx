@@ -3,6 +3,9 @@ import axios from "axios";
 import { UserContext } from "../../contexts/userContext";
 
 function BasicInfo() {
+    const apiUrl = 'https://typle-omega.vercel.app';
+    //switch to http://localhost:5000 when on local
+    
     const {user } = useContext(UserContext);
     const [username, setUsername] = useState(null);
     const [password, setPassword] = useState(null);
@@ -11,7 +14,7 @@ function BasicInfo() {
 
     useEffect(() => {
         if(user) {
-            axios.get(`http://localhost:5000/api/user/${user}`)
+            axios.get(`${apiUrl}/api/user/${user}`)
                 .then(response => {
                     setUsername(response.data.username);
                     setPassword(response.data.password);
@@ -20,7 +23,7 @@ function BasicInfo() {
                     console.log('Error fetching user info:', error);
                 });
             
-            axios.get(`http://localhost:5000/api/userProfile/${user}`)
+            axios.get(`${apiUrl}/api/userProfile/${user}`)
                 .then(response => {
                     setCoins(response.data.coins);
                     setEquiptSkin(response.data.equiptSkin)
