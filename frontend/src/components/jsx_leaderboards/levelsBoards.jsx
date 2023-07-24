@@ -3,13 +3,16 @@ import axios from "axios";
 import Navbar from "../navbar";
 
 function LevelsBoards() {
+  const apiUrl = 'https://typle-omega.vercel.app';
+  //switch to http://localhost:5000 when on local
+  
   const [data, setData] = useState(null);
   const [leaderboardData, setLeaderboardData] = useState([]);
   const [selectedLevel, setSelectedLevel] = useState(1);
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/userStatsAll")
+      .get(`${apiUrl}/api/userStatsAll`)
       .then(response => {
         const userStats = response.data;
         setData(userStats);
@@ -56,7 +59,7 @@ function LevelsBoards() {
   const getUsername = async userId => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/user/${userId}`
+        `${apiUrl}/api/user/${userId}`
       );
       return response.data.username;
     } catch (error) {
