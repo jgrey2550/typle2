@@ -10,6 +10,9 @@ import { UserContext } from "../../contexts/userContext";
 
 //takign in levelNum in from app screen to know which level to display
 function InGame({levelNum, onScreenChangeCampaign, changeScreen}) {
+    const apiUrl = 'https://typle-omega.vercel.app';
+    //switch to http://localhost:5000 when on local
+
     //completion boolean 1 for incomplet then switches to 2 when complete
     //also timer on off that's value is passed into timer and function is passed into words
     //also index to control which index in text user is at
@@ -27,7 +30,7 @@ function InGame({levelNum, onScreenChangeCampaign, changeScreen}) {
 
     useEffect(() => {
         if(gotSkin === 0) {
-            axios.get(`http://localhost:5000/api/userProfile/${user}`)
+            axios.get(`${apiUrl}/api/userProfile/${user}`)
                 .then(response => {
                     setEquiptSkin(response.data.equiptSkin)
                     setGotSkin(1);
