@@ -2,19 +2,6 @@ const router = require('express').Router();
 let User = require('../models/user.model');
 let UserStats = require('../models/userStats.model');
 let UserProfile = require('../models/userProfile.model');
-// const cors = require('cors')
-// const express = require('express');
-
-// const app = express();
-
-// app.use(cors(
-//     {
-//         origin: ["https://typle2-frontend.vercel.app"],
-//         methods: ["POST", "GET", "PUT"],
-//         credentials: true
-//     }
-// ));
-// app.use(express.json());
 
 //post route for creating users
 router.route('/add').post((req, res) => {
