@@ -3,12 +3,15 @@ import Navbar from "../navbar";
 import axios from "axios";
 
 function TypleBoards() {
+  const apiUrl = 'https://typle-omega.vercel.app';
+  //switch to http://localhost:5000 when on local
+  
   const [data, setData] = useState(null);
   const [leaderboardData, setLeaderboardData] = useState([]);
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/userStatsAll")
+      .get(`${apiUrl}/api/userStatsAll`)
       .then(response => {
         const userStats = response.data;
         setData(userStats);
@@ -39,7 +42,7 @@ function TypleBoards() {
 
   const getUsername = async userId => {
     try {
-      const response = await axios.get(`http://localhost:5000/api/user/${userId}`);
+      const response = await axios.get(`${apiUrl}/api/user/${userId}`);
       return response.data.username;
     } catch (error) {
       console.log("Error fetching username:", error);
