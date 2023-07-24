@@ -3,6 +3,19 @@ let User = require('../models/user.model');
 let UserStats = require('../models/userStats.model');
 let UserProfile = require('../models/userProfile.model');
 
+const cors = require('cors')
+const express = require('express')
+
+const app = express()
+app.use(cors(
+    {
+        origin: ["https://test-mern-frontend.vercel.app"],
+        methods: ["POST", "GET"],
+        credentials: true
+    }
+));
+app.use(express.json())
+
 //post route for creating users
 router.route('/add').post((req, res) => {
   const username = req.body.username;
