@@ -3,6 +3,9 @@ import { UserContext } from "../../contexts/userContext";
 import axios from "axios";
 
 function Highscores() {
+    const apiUrl = 'https://typle-omega.vercel.app';
+    //switch to http://localhost:5000 when on local
+    
     const numLevels = 10;
 
     const {user } = useContext(UserContext);
@@ -11,7 +14,7 @@ function Highscores() {
 
     useEffect(() => {
         if(user) {
-            axios.get(`http://localhost:5000/api/userStats/${user}`)
+            axios.get(`${apiUrl}/api/userStats/${user}`)
                 .then(response => {
                     setUserStats(response.data);
                     setTopWPM(response.data.topWPM);
