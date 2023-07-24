@@ -5,6 +5,9 @@ import axios from 'axios';
 
 
 function WordsTyple({text}) {
+    const apiUrl = 'https://typle-omega.vercel.app';
+    //switch to http://localhost:5000 when on local
+    
     const {user} = useContext(UserContext);
     const [topWPM, setTopWPM] = useState(null);
 
@@ -22,7 +25,7 @@ function WordsTyple({text}) {
         let startTime;
 
         if(user) {
-          axios.get(`http://localhost:5000/api/userStats/${user}`)
+          axios.get(`${apiUrl}/api/userStats/${user}`)
             .then(response => {
               setTopWPM(response.data.topWPM);
             })
@@ -50,7 +53,7 @@ function WordsTyple({text}) {
           setWpm((numWords/(elapsedTime/60000)).toFixed(2));
           let wpm = (numWords/(elapsedTime/60000)).toFixed(2);
           if(wpm > topWPM) {
-            axios.put(`http://localhost:5000/api/userStatsWPM/${user}`, {wpm})
+            axios.put(`${apiUrl}/api/userStatsWPM/${user}`, {wpm})
               .then(response => {
                   console.log('User profile updated:', response.data);
               })
