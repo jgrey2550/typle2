@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 function CreateUser() {
+    const apiUrl = 'https://typle-omega.vercel.app';
+    //switch to http://localhost:5000 when on local
+    
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
 
@@ -25,7 +28,7 @@ function CreateUser() {
 
         // console.log(user);
         //creates new user with info passed in and posts it to backend
-        axios.post('https://typle-omega.vercel.app/createUser/add', user)
+        axios.post(`${apiUrl}/createUser/add`, user)
             .then(res => {
                 const newUserId = res.data.userId;
                 
@@ -37,7 +40,7 @@ function CreateUser() {
                 }
 
                 //makes stats object for each user with userID
-                axios.post('https://typle-omega.vercel.app/createUser/addStats', userStats)
+                axios.post(`${apiUrl}/createUser/addStats`, userStats)
                     .then(res => {
                         console.log(res.data)
                     });
@@ -52,7 +55,7 @@ function CreateUser() {
                     skins: [defaultSkin],
                     equiptSkin: "Default"
                 }
-                axios.post('https://typle-omega.vercel.app/createUser/addProfile', userProfile)
+                axios.post(`${apiUrl}/createUser/addProfile`, userProfile)
                     .then(res => {
                         console.log(res.data)
                     });
