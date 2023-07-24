@@ -6,6 +6,9 @@ import { UserContext } from "../../contexts/userContext";
 import WordsTyple from "./wordsTyple";
 
 function Typle() {
+  const apiUrl = 'https://typle-omega.vercel.app';
+  //switch to http://localhost:5000 when on local
+  
   const [paragraph, setParagraph] = useState('');
   const {user} = useContext(UserContext);
 
@@ -13,7 +16,7 @@ function Typle() {
 
   useEffect(() => {
       if(user) {
-          axios.get(`http://localhost:5000/api/userProfile/${user}`)
+          axios.get(`${apiUrl}/api/userProfile/${user}`)
               .then(response => {
                   setEquiptSkin(response.data.equiptSkin)
                   console.log(equiptSkin);
