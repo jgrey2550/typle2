@@ -5,6 +5,9 @@ import { UserContext } from "../contexts/userContext";
 import { useNavigate } from "react-router-dom";
 
 function Login() {
+    const apiUrl = 'https://typle-omega.vercel.app';
+    //switch to http://localhost:5000 when on local
+    
     const navigate = useNavigate();
     //importing the updateUser from context so can update userid when logged in
     const { updateUser } = useContext(UserContext);
@@ -32,7 +35,7 @@ function Login() {
         console.log(loginData);
 
         //post request to check for user credentials
-        axios.post('https://typle-omega.vercel.app/login/', loginData)
+        axios.post(`${apiUrl}/login/`, loginData)
         .then(res => {
             if (res.data.login === 'Login successful') {
                 const userId = res.data.userId;
