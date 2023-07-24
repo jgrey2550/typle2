@@ -43,6 +43,9 @@ const items = [
 
 
 function Shop() {
+    const apiUrl = 'https://typle-omega.vercel.app';
+    //switch to http://localhost:5000 when on local
+    
     const [coins, setCoins] = useState(0);
     const {user} = useContext(UserContext);
     const [selectedItem, setSelectedItem] = useState(null);
@@ -57,7 +60,7 @@ function Shop() {
 
     useEffect(() => {
         if(user) {
-            axios.get(`http://localhost:5000/api/userProfile/${user}`)
+            axios.get(`${apiUrl}/api/userProfile/${user}`)
                 .then(response => {
                     setCoins(response.data.coins);
                 })
