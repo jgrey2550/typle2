@@ -8,6 +8,9 @@ import axios from 'axios';
 import LogoutButton from './jsx_buttons/logoutButton';
 
 function Navbar() {
+  const apiUrl = 'https://typle-omega.vercel.app';
+  //switch to http://localhost:5000 when on local
+  
   const { user } = useContext(UserContext);
   const [username, setUsername] = useState('');
   //get request to find username based on userID 
@@ -15,7 +18,7 @@ function Navbar() {
 
   useEffect(() => {
     if (user) {
-      axios.get(`http://localhost:5000/api/user/${user}`)
+      axios.get(`${apiUrl}/api/user/${user}`)
         .then(response => {
           const user = response.data;
           setUsername(user.username);
