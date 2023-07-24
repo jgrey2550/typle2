@@ -3,20 +3,23 @@ import axios from "axios";
 import { UserContext } from "../../contexts/userContext";
 
 function ShopItem({ name, image, price, changeItem}) {
+    const apiUrl = 'https://typle-omega.vercel.app';
+    //switch to http://localhost:5000 when on local
+        
     const {user} = useContext(UserContext);
     const [coins, setCoins] = useState(0);
     const [items, setItems] = useState(null);
 
     useEffect(() => {
         if(user) {
-            axios.get(`http://localhost:5000/api/userProfile/${user}`)
+            axios.get(`${apiUrl}/api/userProfile/${user}`)
                 .then(response => {
                     setCoins(response.data.coins);
                 })
                 .catch(error => {
                     console.log('error fetching coins', error);
                 });
-            axios.get(`http://localhost:5000/api/userProfile/${user}`)
+            axios.get(`${apiUrl}/api/userProfile/${user}`)
                 .then(response => {
                     setItems(response.data.skins);
                 })
@@ -37,13 +40,13 @@ function ShopItem({ name, image, price, changeItem}) {
                 };
                 console.log(newSkin);
                 console.log(user);
-                axios.put(`http://localhost:5000/api/userProfile/${user}/skins`, { newSkin: newSkin })
+                axios.put(`${apiUrl}/api/userProfile/${user}/skins`, { newSkin: newSkin })
                     .then(response => {
                         console.log('User profile updated:', response.data);
                         alert("you bought " + name + " for " + price + " coins!");
 
                         let coinsAmount = price * -1;
-                        axios.put(`http://localhost:5000/api/userProfile/${user}/coins`, { coinsAmount })
+                        axios.put(`${apiUrl}/api/userProfile/${user}/coins`, { coinsAmount })
                         .then(response => {
                             console.log('User profile updated:', response.data);
                         })
@@ -54,7 +57,7 @@ function ShopItem({ name, image, price, changeItem}) {
                     .catch(error => {
                         console.error('Error updating user profile:', error);
                     });
-                axios.get(`http://localhost:5000/api/userProfile/${user}`)
+                axios.get(`${apiUrl}/api/userProfile/${user}`)
                     .then(response => {
                         setItems(response.data.skins);
                         console.log("added skins n shit" + items);
@@ -72,13 +75,13 @@ function ShopItem({ name, image, price, changeItem}) {
                     name: name,
                     owned: true
                 };
-                axios.put(`http://localhost:5000/api/userProfile/${user}/skins`, { skin: newSkin })
+                axios.put(`${apiUrl}/api/userProfile/${user}/skins`, { skin: newSkin })
                     .then(response => {
                         console.log('User profile updated:', response.data);
                         alert("you bought " + name + " for " + price + " coins!");
                         
                         let coinsAmount = price * -1;
-                        axios.put(`http://localhost:5000/api/userProfile/${user}/coins`, { coinsAmount })
+                        axios.put(`${apiUrl}/api/userProfile/${user}/coins`, { coinsAmount })
                         .then(response => {
                             console.log('User profile updated:', response.data);
 
@@ -90,7 +93,7 @@ function ShopItem({ name, image, price, changeItem}) {
                     .catch(error => {
                         console.error('Error updating user profile:', error);
                     });
-                axios.get(`http://localhost:5000/api/userProfile/${user}`)
+                axios.get(`${apiUrl}/api/userProfile/${user}`)
                     .then(response => {
                         setItems(response.data.skins);
                         console.log("added skins n shit" + items);
