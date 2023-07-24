@@ -5,6 +5,9 @@ import { UserContext } from "../../contexts/userContext";
 import axios from "axios";
 
 function EndScreen({levelNum, onScreenChangeCampaign, changeScreen, timerReset, resetIndex, handleCompletionChange, elapsedTime}) {
+    const apiUrl = 'https://typle-omega.vercel.app';
+    //switch to http://localhost:5000 when on local
+    
     const coinsAmount = 100
 
     const { user } = useContext(UserContext);
@@ -26,14 +29,14 @@ function EndScreen({levelNum, onScreenChangeCampaign, changeScreen, timerReset, 
     
 
     useEffect(() => {
-        axios.put(`http://localhost:5000/api/userProfile/${user}/coins`, { coinsAmount })
+        axios.put(`${apiUrl}/api/userProfile/${user}/coins`, { coinsAmount })
             .then(response => {
                 console.log('User profile updated:', response.data);
             })
             .catch(error => {
                 console.error('Error updating user profile:', error);
             });
-        axios.get(`http://localhost:5000/api/userStats/${user}`)
+        axios.get(`${apiUrl}/api/userStats/${user}`)
             .then(response => {
                 const data = response.data.levels;
 
@@ -45,7 +48,7 @@ function EndScreen({levelNum, onScreenChangeCampaign, changeScreen, timerReset, 
                     if(fastestTime > finalTime) {
                         setEndMessage("You scored a new fastest time!");
                         setFastestTime(finalTime);
-                        axios.put(`http://localhost:5000/api/userStats/${user}`, newTime)
+                        axios.put(`${apiUrl}/api/userStats/${user}`, newTime)
                             .then(response => {
                                 const updatedUserStats = response.data;
                                 console.log(updatedUserStats);
@@ -62,7 +65,7 @@ function EndScreen({levelNum, onScreenChangeCampaign, changeScreen, timerReset, 
                 } else {
                     setFastestTime(finalTime);
                     setEndMessage("You finished the level for the first time!");
-                    axios.put(`http://localhost:5000/api/userStats/${user}`, newTime)
+                    axios.put(`${apiUrl}/api/userStats/${user}`, newTime)
                         .then(response => {
                             const updatedUserStats = response.data;
                             console.log(updatedUserStats);
