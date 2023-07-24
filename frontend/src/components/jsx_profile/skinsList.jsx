@@ -3,12 +3,15 @@ import axios from "axios";
 import { UserContext } from "../../contexts/userContext";
 
 function SkinsList() {
+    const apiUrl = 'https://typle-omega.vercel.app';
+    //switch to http://localhost:5000 when on local
+    
     const {user} = useContext(UserContext);
     const [skins, setSkins] = useState(null);
 
     useEffect(() => {
         if(user) {
-            axios.get(`http://localhost:5000/api/userProfile/${user}`)
+            axios.get(`${apiUrl}/api/userProfile/${user}`)
                 .then(response => {
                     setSkins(response.data.skins);
                 })
@@ -21,7 +24,7 @@ function SkinsList() {
     function changeEquiptSkin(newSkin) {
       if(user) {
         alert("Changed skin to " + newSkin);
-        axios.put(`http://localhost:5000/api/userProfile/${user}/equiptSkin`, {newSkin})
+        axios.put(`${apiUrl}/api/userProfile/${user}/equiptSkin`, {newSkin})
         .then(response => {
             console.log('User profile updated:', response.data);
         })
